@@ -1,0 +1,6 @@
+https://www.googleapis.com/books/v1/volumes?q=4061844407+isbn&fields=items(volumeInfo/title,volumeInfo/subtitle,volumeInfo/authors,volumeInfo/publishedDate,volumeInfo/description,volumeInfo/industryIdentifiers/*,volumeInfo/pageCount,volumeInfo/imageLinks/*)&maxResults=2
+
+###
+https://www.googleapis.com/books/v1/volumes?q=4061844407+isbn&fields=items(volumeInfo/title,volumeInfo/subtitle,volumeInfo/authors,volumeInfo/publishedDate,volumeInfo/description,volumeInfo/industryIdentifiers/*,volumeInfo/pageCount,volumeInfo/imageLinks/*)&maxResults=2
+
+###

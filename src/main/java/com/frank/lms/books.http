@@ -1,6 +1,7 @@
-https://www.googleapis.com/books/v1/volumes?q=4061844407+isbn&fields=items(volumeInfo/title,volumeInfo/subtitle,volumeInfo/authors,volumeInfo/publishedDate,volumeInfo/description,volumeInfo/industryIdentifiers/*,volumeInfo/pageCount,volumeInfo/imageLinks/*)&maxResults=2
-
+https://www.googleapis.com/books/v1/volumes?q=isbn:0735619670
 ###
-https://www.googleapis.com/books/v1/volumes?q=4061844407+isbn&fields=items(volumeInfo/title,volumeInfo/subtitle,volumeInfo/authors,volumeInfo/publishedDate,volumeInfo/description,volumeInfo/industryIdentifiers/*,volumeInfo/pageCount,volumeInfo/imageLinks/*)&maxResults=2
+https://www.googleapis.com/books/v1/volumes?q=isbn%3A4167135507&fields=items%28volumeInfo%2Ftitle%2CvolumeInfo%2Fsubtitle%2CvolumeInfo%2Fauthors%2CvolumeInfo%2FpublishedDate%2CvolumeInfo%2Fdescription%2CvolumeInfo%2FindustryIdentifiers%2F*%2CvolumeInfo%2FpageCount%2CvolumeInfo%2FimageLinks%2F*%29&maxResults=2
+###
+https://www.googleapis.com/books/v1/volumes?q=isbn%3A4053036623&fields=items%28volumeInfo%2Ftitle%2CvolumeInfo%2Fsubtitle%2CvolumeInfo%2Fauthors%2CvolumeInfo%2FpublishedDate%2CvolumeInfo%2Fdescription%2CvolumeInfo%2FindustryIdentifiers%2F*%2CvolumeInfo%2FpageCount%2CvolumeInfo%2FimageLinks%2Fthumbnail%29&maxResults=5
 
 ###

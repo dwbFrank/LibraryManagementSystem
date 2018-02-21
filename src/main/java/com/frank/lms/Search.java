@@ -1,52 +1,38 @@
 package com.frank.lms;
 
+import com.frank.lms.google.GoogleSearch;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.List;
+import java.net.URISyntaxException;
 
 @WebServlet(urlPatterns = "/Search", name = "Search")
 public class Search extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         String isbn = request.getParameter("isbn");
-
-        GoogleSearch test = null;
-        test = new GoogleSearch(GoogleSearch.KeyWord.isbn, isbn);
-        JsonItems json = test.query();
-        for (JsonItems.ItemsBean bean : json.getItems()
-                ) {
-            String publishedDate = bean.getVolumeInfo().getPublishedDate();
-            if (publishedDate != null) {
-                String[] date = publishedDate.split("-");
-                Calendar calendar = Calendar.getInstance();
-                calendar.clear();
-                switch (date.length) {
-                    case 1:
-                        calendar.set(Calendar.YEAR, Integer.parseInt(date[0]));
-                        break;
-                    case 2:
-                        calendar.set(Calendar.YEAR, Integer.parseInt(date[0]));
-                        calendar.set(Calendar.MONTH, Integer.parseInt(date[1]));
-                        break;
-                    case 3:
-                        calendar.set(Calendar.YEAR, Integer.parseInt(date[0]));
-                        calendar.set(Calendar.MONTH, Integer.parseInt(date[1]));
-                        calendar.set(Calendar.DATE, Integer.parseInt(date[2]));
-                        break;
-                    default:
-                        break;
-                }
-            }
+        GoogleSearch test = new GoogleSearch(GoogleSearch.KeyWord.isbn, isbn);
+        try {
+            Book book = test.search();
+            response.setContentType("text/html;charset=UTF-8");
+            HttpSession httpSession = request.getSession();
+            httpSession.setAttribute("book", book);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("GoogleSearch.jsp");
+            requestDispatcher.forward(request, response);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
+
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
 

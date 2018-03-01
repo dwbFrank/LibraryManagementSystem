@@ -1,10 +1,12 @@
-package com.frank.lms.google;
+package com.frank.lms.online;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GoogleBooks {
 
 	private List<ItemsBean> items;
@@ -56,6 +58,7 @@ public class GoogleBooks {
 
 			private String title;
 			private String subtitle;
+			private String publisher;
 			private String publishedDate;
 			private String description;
 			private int pageCount;
@@ -77,6 +80,14 @@ public class GoogleBooks {
 
 			public void setSubtitle(String subtitle) {
 				this.subtitle = subtitle;
+			}
+
+			public String getPublisher() {
+				return publisher;
+			}
+
+			public void setPublisher(String publisher) {
+				this.publisher = publisher;
 			}
 
 			public String getPublishedDate() {

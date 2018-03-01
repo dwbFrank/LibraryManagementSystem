@@ -1,12 +1,12 @@
 package com.frank.lms;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class Book {
 	private String title;
 	private String subtitle;
+	private String publisher;
 	private String publishedDate;
 	private String description;
 	private int pageCount;
@@ -23,6 +23,10 @@ public class Book {
 
 	public String getSubtitle() {
 		return subtitle;
+	}
+
+	public String getPublisher() {
+		return publisher;
 	}
 
 	public String getPublishedDate() {
@@ -57,16 +61,44 @@ public class Book {
 		return url;
 	}
 
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-	private static Calendar string2Calendar(String publishedDate) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.clear();
-		String[] strings = publishedDate.split("-");
-		if (strings.length == 1) calendar.set(Integer.parseInt(strings[0]), 1, 1);
-		if (strings.length == 2) calendar.set(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), 1);
-		if (strings.length == 3) calendar.set(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer
-				.parseInt(strings[2]));
-		return calendar;
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
+	}
+
+	public void setPublishedDate(String publishedDate) {
+		this.publishedDate = publishedDate;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
+
+	public void setImageLinks(String imageLinks) {
+		this.imageLinks = imageLinks;
+	}
+
+	public void setAuthors(List<String> authors) {
+		this.authors = authors;
+	}
+
+	public void setIsbn10(String isbn10) {
+		this.isbn10 = isbn10;
+	}
+
+	public void setIsbn13(String isbn13) {
+		this.isbn13 = isbn13;
 	}
 
 	public Book() {
@@ -80,11 +112,12 @@ public class Book {
 		authors.add("見付けません");
 		isbn10 = "見付けません";
 		isbn13 = "見付けません";
+		publisher = "見付けません";
 	}
 
 
 	public Book(String title, String subtitle, String publishedDate, String description, int pageCount, String
-			imageLinks, List<String> authors, String isbn10, String isbn13, String url) {
+			imageLinks, String publisher, List<String> authors, String isbn10, String isbn13, String url) {
 		this.title = title;
 		this.subtitle = subtitle;
 		this.publishedDate = publishedDate;
@@ -95,6 +128,7 @@ public class Book {
 		this.isbn10 = isbn10;
 		this.isbn13 = isbn13;
 		this.url = url;
+		this.publisher = publisher;
 	}
 
 	@Override
@@ -106,6 +140,7 @@ public class Book {
 				", description='" + description + '\'' +
 				", pageCount=" + pageCount +
 				", imageLinks='" + imageLinks + '\'' +
+				", publisher=" + publisher + '\'' +
 				", authors=" + authors +
 				", isbn10='" + isbn10 + '\'' +
 				", isbn13='" + isbn13 + '\'' +

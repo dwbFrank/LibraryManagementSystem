@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: frank
+  Date: 2018/02/27
+  Time: 4:16
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>LibraryManagementSystem</title>
+    <title>図書管理</title>
 </head>
 <body>
-<h1>図書館検索</h1>
 <form action="Search" method="post">
     <input type="radio" name="localSearchTerm" id="isbn" value="isbn" required>
     <label for="isbn">ISBN</label>
@@ -15,7 +20,7 @@
     <br>
     <input type="radio" name="localSearchTerm" id="author" value="author">
     <label for="author">著者</label>
-    <input type="hidden" name="adminSearch" value="false">
+    <input type="hidden" name="adminSearch" value="true">
     <br>
     <br>
     <label for="searchValue">検索語</label>

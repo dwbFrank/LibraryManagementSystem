@@ -1,4 +1,4 @@
-package com.frank.lms.google;
+package com.frank.lms.online;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frank.lms.Book;
@@ -18,30 +18,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-
 import java.util.List;
 
-public class GoogleSearch {
-
-	public enum KeyWord {
-		title("intitle"),
-		author("inauthor"),
-		publisher("inpublisher"),
-		subject("subject"),
-		isbn("isbn"),
-		lccn("lccn"),
-		oclc("oclc");
-
-		private String abbreviation;
-
-		public String getAbbreviation() {
-			return abbreviation;
-		}
-
-		KeyWord(String abbreviation) {
-			this.abbreviation = abbreviation;
-		}
-	}
+public class OnlineSearch {
 
 	private static final String HOST = "www.googleapis.com";
 	private static final String PATH = "/books/v1/volumes";
@@ -50,13 +29,13 @@ public class GoogleSearch {
 	private List<NameValuePair> nvps;
 	private String url;
 
-	public GoogleSearch(KeyWord terms, String search) {
-		this.nvps = new ArrayList<NameValuePair>();
+	public OnlineSearch(SearchTerm terms, String search) {
+		this.nvps = new ArrayList<>();
 		this.nvps.add(new BasicNameValuePair("q", terms.getAbbreviation() + ":" + search));
 		this.nvps.add(new BasicNameValuePair("fields", "items(volumeInfo/title,volumeInfo/subtitle," +
 				"volumeInfo/authors," +
 				"volumeInfo/publishedDate,volumeInfo/description,volumeInfo/industryIdentifiers/*," +
-				"volumeInfo/pageCount,volumeInfo/imageLinks/thumbnail)"));
+				"volumeInfo/pageCount,volumeInfo/imageLinks/thumbnail,volumeInfo/publisher)"));
 		this.nvps.add(new BasicNameValuePair("maxResults", "5"));
 	}
 
@@ -65,6 +44,7 @@ public class GoogleSearch {
 		String subtitle = "見付けません";
 		String publishedDate = "見付けません";
 		String description = "見付けません";
+		String publisher = "見付けません";
 		int pageCount = 0;
 		String imageLinks = "見付けません";
 		List<String> authors = new ArrayList<>();
@@ -98,6 +78,9 @@ public class GoogleSearch {
 					authors.clear();
 					authors.addAll(volumeInfoBean.getAuthors());
 				}
+				if (volumeInfoBean.getPublisher() != null) {
+					publisher = volumeInfoBean.getPublisher();
+				}
 				if (volumeInfoBean.getIndustryIdentifiers() != null) {
 					for (GoogleBooks.ItemsBean.VolumeInfoBean.IndustryIdentifiersBean industryIdentifiersBean :
 							volumeInfoBean.getIndustryIdentifiers()
@@ -111,7 +94,7 @@ public class GoogleSearch {
 			}
 		}
 
-		return new Book(title, subtitle, publishedDate, description, pageCount, imageLinks, authors, isbn10,
+		return new Book(title, subtitle, publishedDate, description, pageCount, imageLinks, publisher, authors, isbn10,
 				isbn13, this.url);
 	}
 
@@ -137,6 +120,7 @@ public class GoogleSearch {
 			// Data-binding Json --> JavaBean
 			ObjectMapper mapper = new ObjectMapper();
 			GoogleBooks json = mapper.readValue(context, GoogleBooks.class);
+
 			// Resolve to Book
 			return parseBook(json);
 		}

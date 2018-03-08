@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>検索</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2 px-5">
+        <a class="navbar-brand headerLogo" href="https://github.com/dwbFrank/LibraryManagementSystem"><img
+                src="img/mark-github.svg" height="32px" width="32px" alt="GitHub"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">ホーム<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="search.html">検索</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        図書館について
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">ニュース</a>
+                        <a class="dropdown-item" href="#">スケジュール</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">問い合せ</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">ようこそ</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<main>
+    <form action="Search" method="post" class="mt-5 text-center">
+        <fieldset class="form-group">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline1" name="searchTerm" class="custom-control-input"
+                       value="isbn" checked>
+                <label class="custom-control-label" for="customRadioInline1">ISBN</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="searchTerm" class="custom-control-input"
+                       value="author">
+                <label class="custom-control-label" for="customRadioInline2">著者</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline3" name="searchTerm" class="custom-control-input"
+                       value="title">
+                <label class="custom-control-label" for="customRadioInline3">書名</label>
+            </div>
+        </fieldset>
+        <div class="input-group w-75 mx-auto">
+            <input id="searchValue" type="text" class="form-control" aria-label="Text input with dropdown button"
+                   name="searchValue" placeholder="キーワード検索"
+                   required>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">検索
+                </button>
+                <div class="dropdown-menu">
+                    <button class="dropdown-item" name="searchMethod" value="online" type="submit">オンライン
+                    </button>
+                    <button class="dropdown-item" name="searchMethod" value="local" type="submit">データベース
+                    </button>
+                    <div role="separator" class="dropdown-divider"></div>
+                    <button class="dropdown-item" type="reset">クリア</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+</body>
+
+</html>
